@@ -36,7 +36,7 @@ public class VideoController : MonoBehaviour {
     }
 
     void Update() {
-        Debug.Log("VideoController" + ": Udpate() "); 
+        //Debug.Log("VideoController" + ": Udpate() "); 
         if (videoPlayer.isPlaying) {
             ShowPlayButton(false);
 
