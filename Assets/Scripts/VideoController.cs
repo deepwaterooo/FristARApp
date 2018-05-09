@@ -10,9 +10,11 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(VideoPlayer))]
 public class VideoController : MonoBehaviour {
+    private const string TAG = "VideoController";
 
 #region PRIVATE_MEMBERS
     private VideoPlayer videoPlayer;
+    //private int audioTrackCount;
 #endregion //PRIVATE_MEMBERS
 
 #region PUBLIC_MEMBERS
@@ -21,10 +23,13 @@ public class VideoController : MonoBehaviour {
 #endregion //PRIVATE_MEMBERS
 
 #region MONOBEHAVIOUR_METHODS
-
-    void Start() {
+    private void Awake() {
         videoPlayer = GetComponent<VideoPlayer>();
-
+        videoPlayer.playOnAwake = false;
+        transform.gameObject.GetComponent<AudioSource>().playOnAwake = false;
+    }
+    
+    void Start() {
         // Setup Delegates
         videoPlayer.errorReceived += HandleVideoError;
         videoPlayer.started += HandleStartedEvent;
@@ -32,18 +37,19 @@ public class VideoController : MonoBehaviour {
         videoPlayer.seekCompleted += HandleSeekCompleted;
         videoPlayer.loopPointReached += HandleLoopPointReached;
 
+        // play on awake set to false
+        //videoPlayer.playOnAwake = false;
+        
         LogClipInfo();
     }
 
     void Update() {
-        //Debug.Log("VideoController" + ": Udpate() "); 
         if (videoPlayer.isPlaying) {
             ShowPlayButton(false);
-
             if (videoPlayer.frameCount < float.MaxValue) {
                 float frame = (float)videoPlayer.frame;
                 float count = (float)videoPlayer.frameCount;
-                Debug.Log("count: " + count);
+                //Debug.Log("count: " + count);
                 
                 float progressPercentage = 0;
 
@@ -54,8 +60,7 @@ public class VideoController : MonoBehaviour {
                     m_ProgressBar.sizeDelta = new Vector2((float)progressPercentage, m_ProgressBar.sizeDelta.y);
             }
 
-        }
-        else {
+        } else {
             ShowPlayButton(true);
         }
     }
@@ -71,32 +76,46 @@ public class VideoController : MonoBehaviour {
 #region PUBLIC_METHODS
 
     public void Play() {
-        Debug.Log("Play Video");
+        Debug.Log(TAG + ": Play() bgn"); 
+        //Debug.Log("Play Video");
         PauseAudio(false);
-        videoPlayer.Play();
+        if (videoPlayer != null)
+            Debug.Log(TAG + ": Play() bef videoPlayer.Play()"); 
+            videoPlayer.Play();
+            Debug.Log(TAG + ": Play() aft videoPlayer.Play()"); 
         ShowPlayButton(false);
+        Debug.Log(TAG + ": Play() end"); 
     }
 
     public void Pause() {
+        Debug.Log(TAG + ": Pause() bgn");
+        Debug.Log("(videoPlayer != null): " + (videoPlayer != null));
         if (videoPlayer) {
-            Debug.Log("Pause Video");
+            //Debug.Log("Pause Video");
             PauseAudio(true);
             videoPlayer.Pause();
             ShowPlayButton(true);
         }
+        Debug.Log(TAG + ": Pause() end"); 
     }
-
 #endregion // PUBLIC_METHODS
 
 #region PRIVATE_METHODS
-
     private void PauseAudio(bool pause) {
-        for (ushort trackNumber = 0; trackNumber < videoPlayer.audioTrackCount; ++trackNumber) {
-            if (pause)
-                videoPlayer.GetTargetAudioSource(trackNumber).Pause();
-            else
-                videoPlayer.GetTargetAudioSource(trackNumber).UnPause();
-        }
+        Debug.Log(TAG + ": PauseAudio() bgn");
+        Debug.Log("pause: " + pause);
+        
+        Debug.Log("(videoPlayer == null): " + (videoPlayer == null));
+        //if (videoPlayer != null) {
+        Debug.Log("videoPlayer.audioTrackCount: " + videoPlayer.audioTrackCount);
+        
+            for (ushort trackNumber = 0; trackNumber < videoPlayer.audioTrackCount; ++trackNumber) {
+                if (pause)
+                    videoPlayer.GetTargetAudioSource(trackNumber).Pause();
+                else
+                    videoPlayer.GetTargetAudioSource(trackNumber).UnPause(); // 
+            }
+        //}
     }
 
     private void ShowPlayButton(bool enable) {
@@ -105,8 +124,11 @@ public class VideoController : MonoBehaviour {
     }
 
     private void LogClipInfo() {
+        Debug.Log("videoPlayer.clip == null: " + (videoPlayer.clip == null)); // true
+        Debug.Log("(videoPlayer == null): " + (videoPlayer == null));         // false
+        
         if (videoPlayer.clip != null) {
-            string stats =
+/*            string stats =
                 "\nName: " + videoPlayer.clip.name +
                 "\nAudioTracks: " + videoPlayer.clip.audioTrackCount +
                 "\nFrames: " + videoPlayer.clip.frameCount +
@@ -115,25 +137,35 @@ public class VideoController : MonoBehaviour {
                 "\nWidth: " + videoPlayer.clip.width +
                 "\nLength: " + videoPlayer.clip.length +
                 "\nPath: " + videoPlayer.clip.originalPath;
-
             Debug.Log(stats);
+*/            
+            Debug.Log("videoPlayer.clip.name: " + videoPlayer.clip.name);
+            Debug.Log("videoPlayer.clip.audioTrackCount: " + videoPlayer.clip.audioTrackCount);
+            Debug.Log("videoPlayer.clip.frameCount: " + videoPlayer.clip.frameCount);
+            Debug.Log("videoPlayer.clip.frameRate: " + videoPlayer.clip.frameRate);
+            Debug.Log("videoPlayer.clip.height: " + videoPlayer.clip.height);
+            Debug.Log("videoPlayer.clip.width: " + videoPlayer.clip.width);
+            Debug.Log("videoPlayer.clip.length: " + videoPlayer.clip.length);
+            Debug.Log("videoPlayer.clip.originalPath: " + videoPlayer.clip.originalPath);
+        } else {
+            Debug.Log("videoPlayer.clip == null");
         }
     }
 
 #endregion // PRIVATE_METHODS
 
 #region DELEGATES
-
     void HandleVideoError(VideoPlayer video, string errorMsg) {
         Debug.LogError("Error: " + video.clip.name + "\nError Message: " + errorMsg);
     }
 
     void HandleStartedEvent(VideoPlayer video) {
-        //Debug.Log("Started: " + video.clip.name);
+        Debug.Log("Started: " + videoPlayer.clip.name);
+        videoPlayer.Play();
     }
 
     void HandlePrepareCompleted(VideoPlayer video) {
-        //Debug.Log("Prepare Completed: " + video.clip.name);
+        Debug.Log("Prepare Completed: " + video.clip.name);
     }
 
     void HandleSeekCompleted(VideoPlayer video) {
@@ -145,7 +177,6 @@ public class VideoController : MonoBehaviour {
 
         ShowPlayButton(true);
     }
-
 #endregion //DELEGATES
 
 }

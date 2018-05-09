@@ -3,7 +3,9 @@
 #+author: deepwaterooo
 
 * Udpates
+- Play Pause function works, interface needs to be improved. 
 - will make video user interaction work first, then modify others. 
-- video works only without user interaction (play, pause)
-- car selection secton works
-- news selection basically works, hard coded five news, display in a new plain
+  - video works only without user interaction (play, pause)
+  - car selection secton works
+  - news selection basically works, hard coded five news, display in a new plain
+  - Others: news API call works, NewsAPI client library works
