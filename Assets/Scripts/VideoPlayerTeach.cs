@@ -7,38 +7,31 @@ using System;
 
 public class VideoPlayerTeach : MonoBehaviour {
     private const string TAG = "VideoPlayerTeach";
-    // 图像
-    public RawImage image;
-    //public VideoPlayer vPlayer;
+
+    public RawImage image; // 图像
     //public string urlNetWork = "http:// www.quirksmode.org/html5/videos/big_buck_bunny.mp4";// 网络视频路径
 
     public Button playBtn;
     public Button pauseBtn;
-    // 前进
-    //public Button btn_Fornt;
-    // 后退
-    //public Button btn_Back;
+    public Button forwardBtn;
+    public Button backwardBtn;
     // 下一个
     //public Button btn_Next;
-    // 视频控制器
     public Slider sliderVideo;
-    // 音量控制器
-    //public Slider sliderSource;
+    public Slider sliderSource;
     // 音量大小
     //public Text text;
     // 当前视频时间
-    //public Text text_Time;
+    public Text currTime;
     // 视频总时长
-    //public Text text_Count;
-    // 音频组件
-    //public AudioSource source;
+    public Text totalTime;
 
     // 需要添加播放器的物体
     public GameObject obj;
     // 是否拿到视频总时长
     public bool isShow;
     // 前进后退的大小
-    //public float numBer = 20f;
+    public float numBer = 20f;
 
     private VideoPlayer vPlayer;
     private AudioSource source;
@@ -54,9 +47,6 @@ public class VideoPlayerTeach : MonoBehaviour {
     // Use this for initialization
     void Start () {
         image = obj.GetComponent<RawImage>();
-        // 一定要动态添加这两个组件，要不然会没声音
-        //vPlayer = obj.AddComponent<VideoPlayer>();
-        //source = obj.AddComponent<AudioSource>();
         vPlayer = GetComponent<VideoPlayer>();
         source = GetComponent<AudioSource>();
 
@@ -64,19 +54,17 @@ public class VideoPlayerTeach : MonoBehaviour {
         vPlayer.playOnAwake = false;
         source.playOnAwake = false;
         source.Pause();
-
-        // 初始化
-        //Init(urlNetWork); // videoclip 需要吗 ？？？？？
+        //Init(urlNetWork); 
 
         playBtn.onClick.AddListener(delegate { OnClick(0); });
         pauseBtn.onClick.AddListener(delegate { OnClick(1); });
-        //btn_Fornt.onClick.AddListener(delegate { OnClick(2); });
-        //btn_Back.onClick.AddListener(delegate { OnClick(3); });
+        forwardBtn.onClick.AddListener(delegate { OnClick(2); });
+        backwardBtn.onClick.AddListener(delegate { OnClick(3); });
         //btn_Next.onClick.AddListener(delegate { OnClick(4); });
 
-        //sliderSource.value = source.volume;
+        sliderSource.value = source.volume;
         //text.text = string.Format("{0:0}%", source.volume * 100);
-        //sliderSource.onValueChanged.AddListener(delegate { ChangeSource(sliderSource.value); });
+        sliderSource.onValueChanged.AddListener(delegate { ChangeSource(sliderSource.value); });
     }
 
     //    初始化VideoPlayer
@@ -104,25 +92,24 @@ public class VideoPlayerTeach : MonoBehaviour {
     }
 
     //    改变音量大小
-    // <param name="value"></param>
     public void ChangeSource(float value) {
         source.volume = value;
         //text.text = string.Format("{0:0}%", value * 100);
     }
 
     //    改变视频进度
-    // <param name="value"></param>
     public void ChangeVideo(float value) {
-        Debug.Log(TAG + ": ChangeVideo(float) bgn");
-        //Debug.Log("(vPlayer != null): " + (vPlayer != null));
+        //Debug.Log(TAG + ": ChangeVideo(float) bgn");
         
         if (vPlayer != null && vPlayer.isPrepared) {
-            vPlayer.time = (long)value * vPlayer.clip.length;
+            vPlayer.time = (long)value; //* vPlayer.clip.length;
+            //vPlayer.frame = (int) (vPlayer.time * vPlayer.frameRate * vPlayer.clip.length);
             Debug.Log("VideoPlayer Time: " + vPlayer.time);
+            //Debug.Log("vPlayer.frame: " + vPlayer.frame);
             time = (float)vPlayer.time;
             hour = (int)time / 60;
             mint = (int)time % 60;
-            //text_Time.text = string.Format("{0:D2}:{1:D2}", hour.ToString(), mint.ToString());
+            currTime.text = string.Format("{0:D2}:{1:D2}", hour.ToString(), mint.ToString());
         }
     }
 
@@ -134,16 +121,16 @@ public class VideoPlayerTeach : MonoBehaviour {
                 playBtn.enabled = false;
                 vPlayer.Play();
                 pauseBtn.enabled = true;
-                //Time.timeScale = 1;
+                Time.timeScale = 1;
                 break;
             case 1:
                 Debug.Log("pause button clicked");
                 pauseBtn.enabled = false;
                 vPlayer.Pause();
                 playBtn.enabled = true;
-                //Time.timeScale = 0;
+                Time.timeScale = 0;
                 break;
-/*            case 2:
+            case 2:
                 sliderVideo.value = sliderVideo.value + numBer;
                 break;
             case 3:
@@ -151,9 +138,9 @@ public class VideoPlayerTeach : MonoBehaviour {
                 break;
                 case 4:
                 vPlayer.Stop();
-                Init(Application.streamingAssetsPath + "/EasyMovieTexture.mp4");
+                Init(Application.streamingAssetsPath + "/VuforiaSizzle.mp4");  // update
                 break;
-*/            default:
+            default:
                 break;
         }
         Debug.Log(TAG + ": OnClick() end"); 
@@ -163,26 +150,27 @@ public class VideoPlayerTeach : MonoBehaviour {
     void Update () {
         if (vPlayer.isPlaying && isShow) {
             // 把图像赋给RawImage
-            image.texture = vPlayer.texture;
+            //image.texture = vPlayer.texture;
             // 帧数/帧速率=总时长    如果是本地直接赋值的视频，我们可以通过VideoClip.length获取总时长
-            sliderVideo.maxValue = vPlayer.frameCount/vPlayer.frameRate;
-
+            //sliderVideo.maxValue = vPlayer.frameCount/vPlayer.frameRate;
+            sliderVideo.maxValue = (float)vPlayer.clip.length;
+            
             time = sliderVideo.maxValue;
             hour = (int)time / 60;
             mint = (int)time % 60;
-            //text_Count.text = string.Format("/  {0:D2}:{1:D2}", hour.ToString(), mint.ToString());
+            totalTime.text = string.Format("/  {0:D2}:{1:D2}", hour.ToString(), mint.ToString());
 
             Debug.Log("sliderVideo.value: " + sliderVideo.value);
             sliderVideo.onValueChanged.AddListener(delegate { ChangeVideo(sliderVideo.value); });
             isShow = !isShow;
         }
-
+/*
         Debug.Log("((int)vPlayer.time): " + ((int)vPlayer.time));
         Debug.Log("((int)sliderVideo.maxValue): " + ((int)sliderVideo.maxValue));
         Debug.Log("(Mathf.Abs((int)vPlayer.time - (int)sliderVideo.maxValue) == 0): " + (Mathf.Abs((int)vPlayer.time - (int)sliderVideo.maxValue) == 0));
-        
-        //if (Mathf.Abs((int)vPlayer.time - (int)sliderVideo.maxValue) == 0) {
-        if (vPlayer.time == vPlayer.clip.length) {
+        */        
+        if (Mathf.Abs((int)vPlayer.time - (int)sliderVideo.maxValue) == 0) {
+        //if (vPlayer.time == vPlayer.clip.length) {
             vPlayer.frame = (long)vPlayer.frameCount;
             vPlayer.Stop();
             Debug.Log("播放完成！");
@@ -191,7 +179,8 @@ public class VideoPlayerTeach : MonoBehaviour {
         } else if (isVideo && vPlayer.isPlaying) {
             time_Count += Time.deltaTime;
             if ((time_Count - time_Current) >= 1) {
-                sliderVideo.value += (float)(1.0f/vPlayer.clip.length);
+                //sliderVideo.value += (float)(1.0f/vPlayer.clip.length);
+                sliderVideo.value +=  1;
                 Debug.Log("value:" + sliderVideo.value);
                 time_Current = time_Count;
             }

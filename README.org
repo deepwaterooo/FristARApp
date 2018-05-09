@@ -3,6 +3,7 @@
 #+author: deepwaterooo
 
 * Udpates
+- video play part user interaction are completely finished. Will fill in the rest necessary components for news selection section to complete.
 - Play Pause function works, interface needs to be improved. 
 - will make video user interaction work first, then modify others. 
   - video works only without user interaction (play, pause)
