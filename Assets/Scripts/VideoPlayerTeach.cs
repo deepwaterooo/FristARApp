@@ -36,7 +36,7 @@ public class VideoPlayerTeach : MonoBehaviour {
     private VideoPlayer vPlayer;
     private AudioSource source;
     
-    // 时 分的转换
+    // 时分的转换
     private int hour, mint;
     private float time;
     private float time_Count;
@@ -44,7 +44,6 @@ public class VideoPlayerTeach : MonoBehaviour {
     // 视频是否播放完成
     private bool isVideo;
 
-    // Use this for initialization
     void Start () {
         image = obj.GetComponent<RawImage>();
         vPlayer = GetComponent<VideoPlayer>();
@@ -67,8 +66,7 @@ public class VideoPlayerTeach : MonoBehaviour {
         sliderSource.onValueChanged.AddListener(delegate { ChangeSource(sliderSource.value); });
     }
 
-    //    初始化VideoPlayer
-    // <param name="url"></param>
+    // 初始化VideoPlayer
     private void Init(string url) {
         isVideo = true;
         isShow = true;
@@ -76,12 +74,12 @@ public class VideoPlayerTeach : MonoBehaviour {
         time_Current = 0;
         sliderVideo.value = 0;
         // 设置为URL模式
-        vPlayer.source = VideoSource.Url;
+        //vPlayer.source = VideoSource.Url;
         // 设置播放路径
-        vPlayer.url = url;
+        //vPlayer.url = url;
+
         // 在视频中嵌入的音频类型
         vPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-
         // 把声音组件赋值给VideoPlayer
         vPlayer.SetTargetAudioSource(0, source);
 
@@ -91,21 +89,17 @@ public class VideoPlayerTeach : MonoBehaviour {
         vPlayer.Prepare();
     }
 
-    //    改变音量大小
+    // 改变音量大小
     public void ChangeSource(float value) {
         source.volume = value;
         //text.text = string.Format("{0:0}%", value * 100);
     }
 
-    //    改变视频进度
+    // 改变视频进度
     public void ChangeVideo(float value) {
-        //Debug.Log(TAG + ": ChangeVideo(float) bgn");
-        
         if (vPlayer != null && vPlayer.isPrepared) {
-            vPlayer.time = (long)value; //* vPlayer.clip.length;
-            //vPlayer.frame = (int) (vPlayer.time * vPlayer.frameRate * vPlayer.clip.length);
+            vPlayer.time = (long)value; 
             Debug.Log("VideoPlayer Time: " + vPlayer.time);
-            //Debug.Log("vPlayer.frame: " + vPlayer.frame);
             time = (float)vPlayer.time;
             hour = (int)time / 60;
             mint = (int)time % 60;
@@ -164,30 +158,22 @@ public class VideoPlayerTeach : MonoBehaviour {
             sliderVideo.onValueChanged.AddListener(delegate { ChangeVideo(sliderVideo.value); });
             isShow = !isShow;
         }
-/*
-        Debug.Log("((int)vPlayer.time): " + ((int)vPlayer.time));
-        Debug.Log("((int)sliderVideo.maxValue): " + ((int)sliderVideo.maxValue));
-        Debug.Log("(Mathf.Abs((int)vPlayer.time - (int)sliderVideo.maxValue) == 0): " + (Mathf.Abs((int)vPlayer.time - (int)sliderVideo.maxValue) == 0));
-        */        
+
         if (Mathf.Abs((int)vPlayer.time - (int)sliderVideo.maxValue) == 0) {
-        //if (vPlayer.time == vPlayer.clip.length) {
             vPlayer.frame = (long)vPlayer.frameCount;
             vPlayer.Stop();
-            Debug.Log("播放完成！");
+            Debug.Log("Video play finished！");
             isVideo = false;
             return;
         } else if (isVideo && vPlayer.isPlaying) {
             time_Count += Time.deltaTime;
             if ((time_Count - time_Current) >= 1) {
-                //sliderVideo.value += (float)(1.0f/vPlayer.clip.length);
                 sliderVideo.value +=  1;
                 Debug.Log("value:" + sliderVideo.value);
                 time_Current = time_Count;
             }
         }
     }
-
-    private void FixedUpdate() {}
 
     void Prepared(VideoPlayer player) {
         player.Play();

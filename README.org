@@ -3,6 +3,10 @@
 #+author: deepwaterooo
 
 * Udpates
+- All major functionalities are finished. One screen shot was attached. 
+
+  [[./pic/one.png]]
+  - Will continueously smooth the project a little bit more (maybe a couple of days) to see if there is anything else that I can do for it. 
 - video play part user interaction are completely finished. Will fill in the rest necessary components for news selection section to complete.
 - Play Pause function works, interface needs to be improved. 
 - will make video user interaction work first, then modify others. 
