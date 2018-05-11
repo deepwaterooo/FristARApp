@@ -3,6 +3,7 @@
 #+author: deepwaterooo
 
 * Udpates
+- LeanScale: under control for separating scaling videoplayer from scaling car models.
 - Try to clean all bugs that get noticed: 
   - adjust the video plain size/ratio to display video properly
   - next clip button resulted crashes

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using System;
+using Lean.Touch;
 
 public class VideoPlayerControl : MonoBehaviour {
     private const string TAG = "VideoPlayerControl";
@@ -23,7 +24,8 @@ public class VideoPlayerControl : MonoBehaviour {
     public float numBer = 20f;  
     public bool hasGotTotalTime;   
     public GameObject carSelection;
-    
+    public bool isLeanScaleEnabled = false;
+
     private VideoPlayer videoPlayer;
     private AudioSource audioSource;
     private int videoClipIndex;
@@ -42,6 +44,8 @@ public class VideoPlayerControl : MonoBehaviour {
 
     void Start() {
         videoPlayer.clip = videoClips[0];
+        gameObject.GetComponent<LeanScale>().enabled = true;
+        isLeanScaleEnabled = true;
         
         playBtn.onClick.AddListener(delegate {
                 PlayPause();
@@ -93,26 +97,34 @@ public class VideoPlayerControl : MonoBehaviour {
     public void SetNextClip() {
         if (carSelector.latestActiveCarIndex >= 0) 
             carSelector.DeactivatePreviousGameObjects();
+        if (!isLeanScaleEnabled) {
+            gameObject.GetComponent<LeanScale>().enabled = true;
+            isLeanScaleEnabled = true;
+        }
         bool isPlaying = false;
         if (videoPlayer.isPlaying) {
             isPlaying = true;
             videoPlayer.Pause();
-            playBtn.GetComponent<Image>().sprite = playBtnSprite;
         }
         ++videoClipIndex;
         if (videoClipIndex >= videoClips.Length) 
             videoClipIndex = videoClipIndex % videoClips.Length;
         videoPlayer.clip = videoClips[videoClipIndex];
         SetTotalTime();
-        if (isPlaying) {
+        if (isPlaying) 
             videoPlayer.Play();
-            playBtn.GetComponent<Image>().sprite = pauseBtnSprite;
-        }
     }
 
     public void PlayPause() {
         if (carSelector.latestActiveCarIndex >= 0) 
             carSelector.DeactivatePreviousGameObjects();
+
+        Debug.Log("isLeanScaleEnabled: " + isLeanScaleEnabled);
+        
+        if (!isLeanScaleEnabled) {
+            gameObject.GetComponent<LeanScale>().enabled = true;
+            isLeanScaleEnabled = true;
+        }
         if (videoPlayer.isPlaying) {
             videoPlayer.Pause();
             playBtn.GetComponent<Image>().sprite = playBtnSprite;
@@ -153,6 +165,12 @@ public class VideoPlayerControl : MonoBehaviour {
     }
     
     void OnClick(int num) {
+        if (carSelector.latestActiveCarIndex >= 0) 
+            carSelector.DeactivatePreviousGameObjects();
+        if (!isLeanScaleEnabled) {
+            gameObject.GetComponent<LeanScale>().enabled = true;
+            isLeanScaleEnabled = true;
+        }
         switch (num) {
         case 0:
             sliderVideo.value = (float)videoPlayer.time + numBer;

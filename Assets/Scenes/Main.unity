@@ -730,9 +730,8 @@ GameObject:
   - component: {fileID: 282213311}
   - component: {fileID: 282213310}
   - component: {fileID: 282213309}
-  - component: {fileID: 282213312}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: CarPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -813,37 +812,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282213307}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!328 &282213312
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 282213307}
-  m_Enabled: 0
-  m_VideoClip: {fileID: 0}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 3
-  m_AspectRatio: 2
-  m_DataSource: 1
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
-  m_Url: file:///Users/qunyan/unity/practiceProjs/ARChallOnes/Assets/StreamingAssets/VuforiaSizzle.mp4
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
-  m_SkipOnDrop: 1
-  m_Looping: 1
-  m_WaitForFirstFrame: 0
-  m_FrameReadyEventEnabled: 0
 --- !u!1001 &296360494
 Prefab:
   m_ObjectHideFlags: 0
@@ -906,98 +874,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114028556307189878, guid: f51e5dec10f53754da6879255bf64503,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f51e5dec10f53754da6879255bf64503, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &306398930
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 306398935}
-  - component: {fileID: 306398934}
-  - component: {fileID: 306398933}
-  - component: {fileID: 306398932}
-  - component: {fileID: 306398931}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!92 &306398931
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 306398930}
-  m_Enabled: 1
---- !u!81 &306398932
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 306398930}
-  m_Enabled: 1
---- !u!124 &306398933
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 306398930}
-  m_Enabled: 1
---- !u!20 &306398934
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 306398930}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &306398935
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 306398930}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &331857073
 Mesh:
   m_ObjectHideFlags: 0
@@ -1189,6 +1073,11 @@ Prefab:
     - target: {fileID: 111536, guid: d47bbc5c21eb1724c86bb2d848f34f39, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114495496132217246, guid: d47bbc5c21eb1724c86bb2d848f34f39,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d47bbc5c21eb1724c86bb2d848f34f39, type: 2}
@@ -1486,6 +1375,7 @@ MonoBehaviour:
   - {fileID: 96965930}
   - {fileID: 791881607}
   latestActiveCarIndex: -1
+  videoPlane: {fileID: 1506778285}
 --- !u!4 &483234601
 Transform:
   m_ObjectHideFlags: 0
@@ -1890,7 +1780,13 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114440355745664686, guid: aee592ef114162243b04b1bf9621c3b9,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114483224005677512, guid: aee592ef114162243b04b1bf9621c3b9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: aee592ef114162243b04b1bf9621c3b9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &722757388
@@ -1955,6 +1851,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114049735024431298, guid: 8ba03ed73f9d109408318534adc679a2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ba03ed73f9d109408318534adc679a2, type: 2}
   m_IsPrefabParent: 0
@@ -1973,7 +1874,6 @@ GameObject:
   - component: {fileID: 775533666}
   - component: {fileID: 775533665}
   - component: {fileID: 775533664}
-  - component: {fileID: 775533667}
   - component: {fileID: 775533668}
   m_Layer: 0
   m_Name: 3DNewsPlane
@@ -2051,17 +1951,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 775533662}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &775533667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 775533662}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6741e233b0f8e43cab5d40a42fe7c6de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!132 &775533668
 GUIText:
   m_ObjectHideFlags: 0
@@ -2593,6 +2482,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114839051903641502, guid: 5c66d8857a80750458276b54c2bea5d7,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c66d8857a80750458276b54c2bea5d7, type: 2}
   m_IsPrefabParent: 0
@@ -2610,6 +2504,7 @@ GameObject:
   - component: {fileID: 990458341}
   - component: {fileID: 990458340}
   - component: {fileID: 990458346}
+  - component: {fileID: 990458347}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -2731,6 +2626,30 @@ MonoBehaviour:
   vbBtnObject: {fileID: 259548880}
   newsPlane: {fileID: 775533662}
   newsText: {fileID: 1919453073}
+--- !u!114 &990458347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 990458339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc98219a83dff145947365dc914d06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TapThreshold: 0.5
+  SwipeThreshold: 50
+  ReferenceDpi: 200
+  GuiLayers:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  RecordFingers: 1
+  RecordThreshold: 5
+  RecordLimit: 10
+  SimulateMultiFingers: 1
+  PinchTwistKey: 306
+  MultiDragKey: 308
+  FingerTexture: {fileID: 2800000, guid: 25c48be3a87ea0f489a6d41c9c9a2194, type: 3}
 --- !u!1 &1017062051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3038,6 +2957,7 @@ MonoBehaviour:
   btn5: {fileID: 613420848}
   newsPlane: {fileID: 775533662}
   newsText: {fileID: 1919453073}
+  carSelection: {fileID: 483234599}
 --- !u!1 &1052233585
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,58 +3203,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1127522682
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1127522684}
-  - component: {fileID: 1127522683}
-  m_Layer: 0
-  m_Name: status
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!132 &1127522683
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1127522682}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: '...'
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 36
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4284612352
-  m_PixelCorrect: 1
-  m_RichText: 1
---- !u!4 &1127522684
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1127522682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140448702
 GameObject:
   m_ObjectHideFlags: 0
@@ -4016,48 +3884,6 @@ RectTransform:
   m_AnchoredPosition: {x: 59.56389, y: 21.321217}
   m_SizeDelta: {x: 803, y: 504}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1355329270
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1355329272}
-  - component: {fileID: 1355329271}
-  m_Layer: 0
-  m_Name: SampleWebView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1355329271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1355329270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 872546609720d4c1d9a49913bfa8829c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Url: sample.html
-  status: {fileID: 1127522683}
---- !u!4 &1355329272
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1355329270}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390518012
 GameObject:
   m_ObjectHideFlags: 0
@@ -4229,8 +4055,9 @@ GameObject:
   - component: {fileID: 1506778287}
   - component: {fileID: 1506778292}
   - component: {fileID: 1506778293}
+  - component: {fileID: 1506778294}
   m_Layer: 0
-  m_Name: PlaneLeft
+  m_Name: VideoPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4439,12 +4266,12 @@ MonoBehaviour:
   IgnoreIsOverGui: 0
   RequiredFingerCount: 2
   RequiredSelectable: {fileID: 0}
-  Camera: {fileID: 0}
-  WheelSensitivity: 0
+  Camera: {fileID: 101229803}
+  WheelSensitivity: 0.5
   Relative: 0
   ScaleClamp: 0
-  ScaleMin: {x: 0, y: 0, z: 0}
-  ScaleMax: {x: 2, y: 2, z: 2}
+  ScaleMin: {x: 0.5, y: 0.5, z: 0.5}
+  ScaleMax: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!114 &1506778293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4473,6 +4300,31 @@ MonoBehaviour:
   numBer: 20
   hasGotTotalTime: 1
   carSelection: {fileID: 483234599}
+  isLeanScaleEnabled: 0
+--- !u!114 &1506778294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506778285}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc98219a83dff145947365dc914d06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TapThreshold: 0.5
+  SwipeThreshold: 50
+  ReferenceDpi: 200
+  GuiLayers:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  RecordFingers: 1
+  RecordThreshold: 5
+  RecordLimit: 10
+  SimulateMultiFingers: 1
+  PinchTwistKey: 306
+  MultiDragKey: 308
+  FingerTexture: {fileID: 2800000, guid: 25c48be3a87ea0f489a6d41c9c9a2194, type: 3}
 --- !u!1 &1523676071
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,6 +4998,11 @@ Prefab:
     - target: {fileID: 116306, guid: 23f190a7fd1b54e4e946af19411c4729, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114365844293708058, guid: 23f190a7fd1b54e4e946af19411c4729,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23f190a7fd1b54e4e946af19411c4729, type: 2}

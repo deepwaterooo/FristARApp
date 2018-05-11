@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Lean.Touch;
 
 public class CarSelector : MonoBehaviour {
 
     public Button [] showCarTrigBtns;
     public GameObject [] cars;
     public int latestActiveCarIndex = -1;
-  
+    public GameObject videoPlane;
+
+    private LeanScale leanScale;
+    
     void OnEnable() {
         showCarTrigBtns[0].onClick.AddListener(() => buttonCallBack(showCarTrigBtns[0]));
         showCarTrigBtns[1].onClick.AddListener(() => buttonCallBack(showCarTrigBtns[1]));
@@ -32,6 +36,12 @@ public class CarSelector : MonoBehaviour {
     }
     
     private void buttonCallBack(Button button) {
+        leanScale = videoPlane.GetComponent<LeanScale>();
+        if (leanScale.enabled) {
+            leanScale.enabled = false;
+            videoPlane.GetComponent<VideoPlayerControl>().isLeanScaleEnabled = false;
+        }
+
         for (int i = 0; i < showCarTrigBtns.Length; i++) {
             if (showCarTrigBtns[i] == button) {
                 cars[i].SetActive(true);
@@ -42,8 +52,7 @@ public class CarSelector : MonoBehaviour {
     }
 
     void OnDisable() {
-        for (int i = 0; i < showCarTrigBtns.Length; i++) {
+        for (int i = 0; i < showCarTrigBtns.Length; i++) 
             showCarTrigBtns[i].onClick.RemoveAllListeners();
-        }
     }    
 }
