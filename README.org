@@ -3,6 +3,13 @@
 #+author: deepwaterooo
 
 * Udpates
+- Try to clean all bugs that get noticed: 
+  - adjust the video plain size/ratio to display video properly
+  - next clip button resulted crashes
+  - volume slider and video slider works perfectly just as videoplayer section user interaction GUI design and implementation are perfect right now ~!
+  - Car selection section removed left over car models when user interacts other sections.
+  - news selection section added possiblity to surfe and view original news, as well as some button kept display new texts. 
+  - Will make at least another commit to summarize: include android phone screen recorded videos, and NewsAPI small part video to fetch news form online. 
 - All major functionalities are finished. One screen shot was attached. 
 
   [[./pic/one.png]]
