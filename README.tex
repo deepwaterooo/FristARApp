@@ -1,4 +1,4 @@
-% Created 2018-05-11 Fri 16:12
+% Created 2018-05-12 Sat 19:23
 \documentclass[9pt, b5paper]{article}
 \usepackage{fontspec}
 \usepackage{graphicx}
@@ -36,6 +36,17 @@
 \section{Udpates}
 \label{sec-1}
 \begin{itemize}
+\item I consider so far all visible/noticable bugs has been cleared out, and temporatorily leave the project this way for a while. .apk file is included in the repository if any one want to try install and run. 
+
+\includegraphics[width=.9\linewidth]{./pic/another.png}
+\item Clean up bugs: 
+\begin{itemize}
+\item VideoPlayer control when lost track: 
+\begin{itemize}
+\item Customize TrackableEventHandler so that if videoplayer is playing, when lost track, pause; when get back to be reconnected, continue playing
+\end{itemize}
+\item fastfard: fast backward is allowed during both playing and pause, but fast forward is only allow during playing.
+\end{itemize}
 \item LeanScale: under control for separating scaling videoplayer from scaling car models.
 \item Try to clean all bugs that get noticed: 
 \begin{itemize}

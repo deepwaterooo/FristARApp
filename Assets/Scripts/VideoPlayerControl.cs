@@ -118,9 +118,6 @@ public class VideoPlayerControl : MonoBehaviour {
     public void PlayPause() {
         if (carSelector.latestActiveCarIndex >= 0) 
             carSelector.DeactivatePreviousGameObjects();
-
-        Debug.Log("isLeanScaleEnabled: " + isLeanScaleEnabled);
-        
         if (!isLeanScaleEnabled) {
             gameObject.GetComponent<LeanScale>().enabled = true;
             isLeanScaleEnabled = true;
@@ -173,7 +170,8 @@ public class VideoPlayerControl : MonoBehaviour {
         }
         switch (num) {
         case 0:
-            sliderVideo.value = (float)videoPlayer.time + numBer;
+            if (videoPlayer.isPlaying) 
+                sliderVideo.value = (float)videoPlayer.time + numBer;
             break;
         case 1:
             sliderVideo.value = (float)videoPlayer.time - numBer;

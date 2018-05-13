@@ -3,6 +3,13 @@
 #+author: deepwaterooo
 
 * Udpates
+- I consider so far all visible/noticable bugs has been cleared out, and temporatorily leave the project this way for a while. .apk file is included in the repository if any one want to try install and run. 
+
+  [[./pic/another.png]]
+- Clean up bugs: 
+  - VideoPlayer control when lost track: 
+    - Customize TrackableEventHandler so that if videoplayer is playing, when lost track, pause; when get back to be reconnected, continue playing
+  - fastfard: fast backward is allowed during both playing and pause, but fast forward is only allow during playing.  
 - LeanScale: under control for separating scaling videoplayer from scaling car models.
 - Try to clean all bugs that get noticed: 
   - adjust the video plain size/ratio to display video properly
